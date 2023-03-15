@@ -7,7 +7,6 @@ def update():
     t = datetime.now()
     hour, minute, second = t.hour , t.minute, t.second
 
-    # Digital clock
     text.y = 1
     text=Text(f"{str(hour).zfill(2)} : {str(minute).zfill(2)} : {str(second).zfill(2)}",
               position=(0,.4), origin=(0,0),scale=2, background=True)
@@ -33,7 +32,6 @@ def update():
     sd.y = sd_radius/2 * math.sin(90*(math.pi/180) - angle)
     sd.rotation_z = second     
 
-# draw dots
 def draw_dots(degree):
     x = 2.3 * math.cos(90*math.pi/180 - degree*math.pi/180)
     y = 2.3 * math.sin(90*math.pi/180 - degree*math.pi/180)
@@ -43,15 +41,14 @@ def draw_dots(degree):
     if degree%90 == 0: scale = 0.3
 
     return scale,x,y
-
-# Main game    
+ 
 app=Ursina()
 wall = Entity(model='quad',scale=(15,10), texture='assets/bg.jpg')
 
 text = Text(text='')
 clock = Entity(model='circle',color = color.black,scale=5)
 
-#hour, minute and second hands
+
 hr_radius = 1.8
 hr = Entity(model='quad',scale=(0.1,hr_radius),color = color.blue,
             y=hr_radius/2,z=-0.1,origin=(0,0))
@@ -64,13 +61,12 @@ sd_radius = 2.4
 sd = Entity(model='quad',scale=(0.03,sd_radius),color = color.red,
             y=sd_radius/2,z=-0.1,origin=(0,0))
 
-# Draw dots 
 for degree in range(0,360,6):
     scale,x,y=draw_dots(degree)
     Entity(model='circle',scale=scale,position=(x,y),z=-0.1)
 
-# Put on brand Text
-Text(text='GFG', position=(0,0.15),origin=(0,0),scale=2,color=color.green)
+
+Text(text='Avneet', position=(0,0.15),origin=(0,0),scale=2,color=color.green)
 
 app.run()
 
